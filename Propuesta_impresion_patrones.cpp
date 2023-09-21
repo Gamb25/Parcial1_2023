@@ -5,7 +5,7 @@ using namespace std;
 
 
 
-
+int potencia(int col);
 int main()
 {
 
@@ -109,7 +109,20 @@ int main()
         cout<<endl;
         
     }
-    
+cout<<potencia(3);
 
  return 0;
+}
+//Funcion potencia:
+int potencia(int col){
+    int almacenador=1;
+    if(col==0){ 
+        return 1;
+        }
+    else{
+        for(int i=1;i<=col;i++){
+            almacenador=2*almacenador;
+        }
+        return almacenador;
+    }
 }
