@@ -12,7 +12,7 @@ int main()
     //PATRONES PARA CONSOLA:
    
    
-    int *arreglo_ent;
+   /* int *arreglo_ent;
     arreglo_ent=verificacion();
     for(int i=0;i<8;i++){
         cout<<arreglo_ent[i]<<endl;
@@ -22,8 +22,9 @@ int main()
         cout<<arreglo_ent[i]<<endl;
     }
 
-    delete [] arreglo_ent;
-    /*
+    delete [] arreglo_ent;*/
+    
+    int contador_3=0, arreglo_2[8]={0}, numerobinario=0;
     //Patron 1:
     for(int filas=0;filas<4;filas++){
         
@@ -124,7 +125,20 @@ int main()
         cout<<endl;
         
     }
-    */
+    //patron escalera/Patron5:
+    numerobinario=0;
+    contador_3=0;
+    for(int filas=0;filas<8;filas++){
+        for(int columnas=0;columnas<8;columnas++){
+            if(columnas<1+filas){
+                cout<<'*';
+                numerobinario=numerobinario+potencia(columnas);
+            }
+        }
+        arreglo_2[contador_3]=numerobinario;
+        contador_3++;
+        numerobinario=0;
+    }
 
     cout<<potencia(3);
 
