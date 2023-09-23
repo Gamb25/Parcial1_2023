@@ -125,6 +125,60 @@ int main()
         cout<<endl;
         
     }
+    //patron Patron 3:
+    numerobinario=0;
+    contador_3=0;
+    for(int columnas=0;columnas<8;columnas++){
+        if(columnas!=5 && columnas!=2){
+            numerobinario+=potencia(columnas);
+        }
+        
+        else cout<<'-';
+    }
+    for(int posiciones=0;posiciones<8;posiciones+=4){
+        arreglo_2[posiciones]=numerobinario;
+        arreglo_2[posiciones+1]=numerobinario;
+    }
+    numerobinario-=37;
+        for(int posiciones=2;posiciones<8;posiciones+=4){
+        arreglo_2[posiciones]=numerobinario;
+        arreglo_2[posiciones+1]=numerobinario;
+    }
+    cout<<endl;
+    
+    //patron Patron 4:
+    numerobinario=0;
+    contador_3=0;
+    for(int filas=0;filas<4;filas++){
+        for(int columnas=0;columnas<4;columnas++){
+            if(columnas>=filas){
+                numerobinario=numerobinario+potencia(columnas);
+            }
+        }
+        for(int columnas=0;columnas<4;columnas++){
+            if(columnas<filas){
+                numerobinario=numerobinario+potencia(columnas+4);
+            }
+        }
+        arreglo_2[contador_3]=numerobinario;
+        contador_3++;
+        numerobinario=0;
+    }
+    for(int filas=0;filas<4;filas++){
+        for(int columnas=0;columnas<4;columnas++){
+            if(columnas>=3-filas){
+                numerobinario=numerobinario+potencia(columnas);
+            }
+        }
+        for(int columnas=0;columnas<4;columnas++){
+            if(columnas<3-filas){
+                numerobinario=numerobinario+potencia(columnas+4);
+            }
+        }
+        arreglo_2[contador_3]=numerobinario;
+        contador_3++;
+        numerobinario=0;
+    }
     //patron escalera/Patron5:
     numerobinario=0;
     contador_3=0;
@@ -135,6 +189,7 @@ int main()
                 numerobinario=numerobinario+potencia(columnas);
             }
         }
+        cout<<endl;
         arreglo_2[contador_3]=numerobinario;
         contador_3++;
         numerobinario=0;
