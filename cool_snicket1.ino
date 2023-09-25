@@ -202,6 +202,24 @@ int *Filas_patrones(int n){
         numerobinario=0;
     }
   	}
+  	//Patron personalizado:
+  	else if(n==6){
+      int num;
+      Serial.print("Para encender un led se te daran las coordenadas del mismo, para encender escribe 1 y para mantener apagado escribe 0 \n");
+      for(int filas=0;filas<8;filas++){
+        for(int leds=0;leds<8;leds++){
+            
+            Serial.print("\nEstamos en la fila ");Serial.print(filas);Serial.print(" led ");Serial.print(leds);Serial.print(" asignale un valor como encendidio o apagado: \n");
+            while(Serial.available()==0){
+    		}
+  			num=Serial.parseInt();
+            if(num==1)numerobinario+=potencia(leds);
+        }
+        arreglo[contador_3]=numerobinario;
+        contador_3++;
+        numerobinario=0;
+      }
+    }
     return arreglo;  
 }
 //Funcion verificadora de leds.
@@ -220,26 +238,26 @@ void mostrar(int*arreglo, int n){
   	int dt=4000;
   	if(n>0) dt=n;
 	digitalWrite(latchPin, LOW);
-    shiftOut(dataPin,clockPin,MSBFIRST,arreglo[0]);
-    shiftOut(dataPin,clockPin,MSBFIRST,arreglo[1]);
-    shiftOut(dataPin,clockPin,MSBFIRST,arreglo[2]);
-    shiftOut(dataPin,clockPin,MSBFIRST,arreglo[3]);
-    shiftOut(dataPin,clockPin,MSBFIRST,arreglo[4]);
-    shiftOut(dataPin,clockPin,MSBFIRST,arreglo[5]);
-    shiftOut(dataPin,clockPin,MSBFIRST,arreglo[6]);
-    shiftOut(dataPin,clockPin,MSBFIRST,arreglo[7]);
+    shiftOut(dataPin,clockPin,LSBFIRST,arreglo[0]);
+    shiftOut(dataPin,clockPin,LSBFIRST,arreglo[1]);
+    shiftOut(dataPin,clockPin,LSBFIRST,arreglo[2]);
+    shiftOut(dataPin,clockPin,LSBFIRST,arreglo[3]);
+    shiftOut(dataPin,clockPin,LSBFIRST,arreglo[4]);
+    shiftOut(dataPin,clockPin,LSBFIRST,arreglo[5]);
+    shiftOut(dataPin,clockPin,LSBFIRST,arreglo[6]);
+    shiftOut(dataPin,clockPin,LSBFIRST,arreglo[7]);
   	digitalWrite(latchPin,HIGH);
    	delay(dt);
   
   	digitalWrite(latchPin,LOW);
-   	shiftOut(dataPin,clockPin,MSBFIRST,0);
-    shiftOut(dataPin,clockPin,MSBFIRST,0);
-    shiftOut(dataPin,clockPin,MSBFIRST,0);
-    shiftOut(dataPin,clockPin,MSBFIRST,0);
-    shiftOut(dataPin,clockPin,MSBFIRST,0);
-    shiftOut(dataPin,clockPin,MSBFIRST,0);
-    shiftOut(dataPin,clockPin,MSBFIRST,0);
-  	shiftOut(dataPin,clockPin,MSBFIRST,0);
+   	shiftOut(dataPin,clockPin,LSBFIRST,0);
+    shiftOut(dataPin,clockPin,LSBFIRST,0);
+    shiftOut(dataPin,clockPin,LSBFIRST,0);
+    shiftOut(dataPin,clockPin,LSBFIRST,0);
+    shiftOut(dataPin,clockPin,LSBFIRST,0);
+    shiftOut(dataPin,clockPin,LSBFIRST,0);
+    shiftOut(dataPin,clockPin,LSBFIRST,0);
+  	shiftOut(dataPin,clockPin,LSBFIRST,0);
   	digitalWrite(latchPin,HIGH);
 
 
@@ -252,27 +270,24 @@ void mostrar(int*arreglo, int n){
 //Preguntador a usuarios:
 void imagen(){
     	int patron,n,*arreglo_2;
-  		String pregunta="Que deseas imprimir: \nEscribe 1 para Patron 1: \nEscribe 2 para Patron 2: \nEscribe 3 para Patron 3: \nEscribe 4 para Patron 4: \n";
+  		String pregunta="\nQue deseas imprimir: \nEscribe 1 para Patron 1: \nEscribe 2 para Patron 2: \nEscribe 3 para Patron 3: \nEscribe 4 para Patron 4: \nEscribe 5 para Patron 5: \nEscribe 6 para Patron personalizado: \n";
     	String pregunta_2="\nCuanto tiempo en segundos entre encendido y apagado: \n";
 	
   		Serial.print(pregunta);
   		while(Serial.available()==0){
     	}
   		patron=Serial.parseInt();
-    
-  		arreglo_2=Filas_patrones(patron);
-    
-    	Serial.print(pregunta_2);
+        arreglo_2=Filas_patrones(patron);
+  		Serial.print(pregunta_2);
   		while(Serial.available()==0){
     	}
   		n=Serial.parseInt();
-      	n*=1000;
-  		arreglo_2=Filas_patrones(patron);
-    
-  		mostrar(arreglo_2,n);
+     	n*=1000;
+ 		
+    	
+  		mostrar(arreglo_2,n); 
   		delete[]arreglo_2;
-  	
-  	
+      	
 }
 //Mostrar todos los patrones:
 void mostrar_tpatrones(){
@@ -329,4 +344,3 @@ void Publik(){
 		mostrar_tpatrones();
   	}
 }
-
