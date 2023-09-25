@@ -6,6 +6,7 @@ using namespace std;
 int potencia(int col);
 int *Filas_patrones(int n);
 int *verificacion();
+void personalizado();
 
 int main()
 {
@@ -23,6 +24,7 @@ int main()
     }
 
     delete [] arreglo_ent;*/
+    //personalizado();
     
     int contador_3=0, arreglo_2[8]={0}, numerobinario=0;
     //Patron 1:
@@ -166,12 +168,12 @@ int main()
     }
     for(int filas=0;filas<4;filas++){
         for(int columnas=0;columnas<4;columnas++){
-            if(columnas>=3-filas){
+            if(columnas<=3-filas){
                 numerobinario=numerobinario+potencia(columnas);
             }
         }
         for(int columnas=0;columnas<4;columnas++){
-            if(columnas<3-filas){
+            if(columnas>3-filas){
                 numerobinario=numerobinario+potencia(columnas+4);
             }
         }
@@ -180,6 +182,7 @@ int main()
         numerobinario=0;
     }
     //patron escalera/Patron5:
+
     numerobinario=0;
     contador_3=0;
     for(int filas=0;filas<8;filas++){
@@ -314,4 +317,22 @@ int *verificacion(){
     int*temp;
     temp=Filas_patrones(0);
     return temp;
+}
+//Funcion patron al azar
+void personalizado(){
+    int arreglo[8], contador=0,num,numerobinario=0;
+    for(int filas=0;filas<8;filas++){
+        for(int leds=0;leds<8;leds++){
+            cout<<"Para encender un led se te daran las coordenadas del mismo, para encender escribe 1 y para mantener apagado escribe \n";
+            cout<<"Estamos en la "<<filas<<" led "<<leds<<"asignale un valor como encendidio o apagado: ";
+            cin>>num;
+            if(num==1)numerobinario+=potencia(leds);
+        }
+
+        arreglo[contador]=numerobinario;
+        contador++;
+        numerobinario=0;
+    }
+
+    cout<<"terminado";
 }
